@@ -4,7 +4,7 @@ import theme from '../theme';
 
 const styles = StyleSheet.create({
   title: {
-    color: theme.colors.textWhite,
+    color: theme.colors.white,
     marginLeft: 10,
     fontWeight: theme.fontWeights.bold,
     fontSize: theme.fontSizes.subheading,
