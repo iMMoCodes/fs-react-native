@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet } from 'react-native';
 import Text from './Text';
 import theme from '../theme';
+import { Link } from 'react-router-native';
 
 const styles = StyleSheet.create({
   title: {
@@ -11,10 +12,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({ title }) => {
+const AppBarTab = ({ title, target }) => {
   return (
     <Pressable>
-      <Text style={styles.title}>{title}</Text>
+      <Link to={target}>
+        <Text style={styles.title}>{title}</Text>
+      </Link>
     </Pressable>
   );
 };

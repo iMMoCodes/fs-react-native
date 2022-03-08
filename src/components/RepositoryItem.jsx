@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ item }) => {
-  console.log(item);
   return (
     <View style={styles.container}>
       <RepositoryItemDescription item={item} />
