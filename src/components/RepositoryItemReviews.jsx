@@ -23,19 +23,27 @@ const RepositoryItemReviews = ({ item }) => {
   return (
     <View style={styles.container}>
       <View style={styles.singleContainer}>
-        <Text style={styles.number}>{kFormatter(item.stargazersCount)}</Text>
+        <Text style={styles.number} testID='stars'>
+          {kFormatter(item.stargazersCount)}
+        </Text>
         <Text>Stars</Text>
       </View>
       <View style={styles.singleContainer}>
-        <Text style={styles.number}>{kFormatter(item.forksCount)}</Text>
+        <Text style={styles.number} testID='forks'>
+          {kFormatter(item.forksCount)}
+        </Text>
         <Text>Forks</Text>
       </View>
       <View style={styles.singleContainer}>
-        <Text style={styles.number}>{kFormatter(item.reviewCount)}</Text>
+        <Text style={styles.number} testID='reviews'>
+          {kFormatter(item.reviewCount)}
+        </Text>
         <Text>Reviews</Text>
       </View>
       <View style={styles.singleContainer}>
-        <Text style={styles.number}>{item.ratingAverage}</Text>
+        <Text style={styles.number} testID='ratings'>
+          {item.ratingAverage}
+        </Text>
         <Text>Rating</Text>
       </View>
     </View>
