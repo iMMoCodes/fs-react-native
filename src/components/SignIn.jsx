@@ -3,6 +3,7 @@ import SignInForm from './SignInForm';
 import { View, StyleSheet } from 'react-native';
 import theme from '../theme';
 import * as yup from 'yup';
+import useSignIn from '../hooks/useSignIn';
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
@@ -17,13 +18,20 @@ const styles = StyleSheet.create({
 });
 
 const SignIn = () => {
+  const [signIn] = useSignIn();
   const initialValues = {
     username: '',
     password: '',
   };
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    try {
+      const token = await signIn({ username, password });
+      console.log('TOKEN', token);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
