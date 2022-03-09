@@ -24,6 +24,7 @@ export const GET_REPOSITORY = gql`
   query ($repositoryId: ID!) {
     repository(id: $repositoryId) {
       fullName
+      id
       ratingAverage
       reviewCount
       stargazersCount
