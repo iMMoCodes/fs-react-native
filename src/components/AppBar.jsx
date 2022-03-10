@@ -21,6 +21,7 @@ const AppBar = () => {
     return <Text>Loading...</Text>;
   }
   const user = data.me;
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -31,7 +32,10 @@ const AppBar = () => {
             <AppBarTab title='Sign out' target='/' logout={true} />
           </>
         ) : (
-          <AppBarTab title='Sign in' target='/signin' />
+          <>
+            <AppBarTab title='Sign in' target='/signin' />
+            <AppBarTab title='Sign up' target='/signup' />
+          </>
         )}
       </ScrollView>
     </View>
