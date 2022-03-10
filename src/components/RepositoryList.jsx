@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import useRepositories from '../hooks/useRepositories';
 import RepositoryItem from './RepositoryItem';
+import SelectMenu from './SelectMenu';
 
 const styles = StyleSheet.create({
   separator: {
@@ -11,7 +13,11 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({
+  repositories,
+  selectedSort,
+  setSelectedSort,
+}) => {
   const navigate = useNavigate();
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -19,6 +25,12 @@ export const RepositoryListContainer = ({ repositories }) => {
 
   return (
     <FlatList
+      ListHeaderComponent={() => (
+        <SelectMenu
+          selectedSort={selectedSort}
+          setSelectedSort={setSelectedSort}
+        />
+      )}
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => (
@@ -32,9 +44,19 @@ export const RepositoryListContainer = ({ repositories }) => {
 };
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const [selectedSort, setSelectedSort] = useState({
+    orderBy: 'CREATED_AT',
+    orderDirection: 'DESC',
+  });
+  const { repositories } = useRepositories(selectedSort);
 
-  return <RepositoryListContainer repositories={repositories} />;
+  return (
+    <RepositoryListContainer
+      repositories={repositories}
+      selectedSort={selectedSort}
+      setSelectedSort={setSelectedSort}
+    />
+  );
 };
 
 export default RepositoryList;
